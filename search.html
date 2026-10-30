@@ -1,14 +1,26 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>搜索 · 凡人修仙·落地版</title><meta name="description" content="道教内丹典籍白话精读">
-<script>(function(){try{var t=localStorage.getItem('nd-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<script>(function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
+var t=g('nd-theme'),f=g('nd-font'),z=g('nd-size'),lh=g('nd-lh'),w=g('nd-measure');
+if(t==='light'||t==='sepia'||t==='dark')d.setAttribute('data-theme',t);
+var F={sans:'https://fonts.googleapis.cn/css2?family=Noto+Sans+SC:wght@400;600&display=swap',
+serif:'https://fonts.googleapis.cn/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap',
+kai:'https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaiscreen.css',
+wei:'https://fonts.googleapis.cn/css2?family=ZCOOL+XiaoWei&display=swap',
+song:'https://cdn.jsdelivr.net/npm/@chinese-fonts/jhlst@3.0.0/dist/%E4%BA%AC%E8%8F%AF%E8%80%81%E5%AE%8B%E4%BD%93v2_002/result.css'};
+window.__ndLoadFont=function(k){if(!F[k]||document.getElementById('ndfont-'+k))return;var l=document.createElement('link');l.rel='stylesheet';l.href=F[k];l.id='ndfont-'+k;document.head.appendChild(l)};
+if(!f)f='serif';if(F[f]){d.setAttribute('data-font',f);window.__ndLoadFont(f)}
+if(z&&/^(1[5-9]|2[0-2])$/.test(z))d.style.setProperty('--read-size',z+'px');
+if(lh&&/^(1\.\d+|2(\.\d+)?)$/.test(lh))d.style.setProperty('--read-lh',lh);
+if(w&&/^\d{3}$/.test(w))d.style.setProperty('--measure',w+'px');})();</script>
+
 <link rel="stylesheet" href="assets/style.css"></head><body>
 <header class="top"><div class="top-in">
 <a class="brand" href="index.html">凡人修仙·落地版<small>道教内丹典籍白话精读</small></a>
 <nav class="topnav"><a href="index.html">书架</a><a href="glossary.html">术语表</a><a href="search.html">搜索</a></nav>
 <span class="sp"></span>
-<span class="themes"><button data-t="">自动</button><button data-t="light">明</button><button data-t="sepia">米</button><button data-t="dark">暗</button></span>
+<span class="themes"><button type="button" id="aa-btn" class="aa-btn" aria-expanded="false" aria-haspopup="true" title="阅读设置"><span class="aa">A<small>a</small></span><span class="lbl">阅读设置</span></button></span>
 </div></header>
 <div class="layout single"><main id="main"><article class="chapter searchpage"><header class="ch-head"><div class="kicker">离线可用</div><h1>全文搜索</h1>
 <p class="dek">白话、文言原文、注释与术语表一起搜。多个词用空格隔开，表示同时包含。</p></header>
@@ -17,7 +29,7 @@
 <script src="assets/search-index.js"></script></main></div>
 <footer class="foot"><div class="foot-in">
 <p>凡人修仙·落地版 · 道教内丹典籍白话精读。原文为公有领域古籍；白话译文、术语解析为本站译稿。邱陵先生注释原文经其后人同意引用。</p>
-<p>本站内容仅供文化学习与研究，不构成医疗建议，非商业用途。<a href="about.html">关于、版权说明与安全提示</a> · 更新于 2026-10-28</p>
+<p>本站内容仅供文化学习与研究，不构成医疗建议，非商业用途。<a href="about.html">关于、版权说明与安全提示</a> · 更新于 2026-10-30</p>
 </div></footer>
 <div id="term-pop" class="term-pop" hidden></div>
 <script src="assets/app.js"></script></body></html>

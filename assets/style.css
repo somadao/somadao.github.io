@@ -132,3 +132,44 @@ mark{background:#ffd60a66;color:inherit;padding:0 1px}
 @media(max-width:600px){.topnav{display:none}.bp-list{columns:1}.pager{grid-template-columns:1fr}.pn.next{text-align:left}.pn.empty{display:none}
  .top-in{gap:6px}.themes button{padding:3px 6px}.hero{padding-top:40px}}
 @media(hover:hover){.term-pop{display:none}}
+/* 阅读设置（与 lex.qiaomu.ai 相同的面板） */
+:root{--read-size:18px;--read-lh:2;--measure:680px}
+.zh-article{font-size:var(--read-size);line-height:var(--read-lh)}
+.zh-article li{line-height:calc(var(--read-lh) * .95)}
+.sec.lead p{font-size:1.055em}blockquote.yuanwen{font-size:1.03em;line-height:var(--read-lh)}
+.sec.terms li,.sec blockquote,.zh-article>blockquote{font-size:.89em}
+[data-font='sans'] .zh-article{font-family:"Noto Sans SC",var(--sans)}
+[data-font='serif'] .zh-article{font-family:"Noto Serif SC",var(--serif);letter-spacing:.03em}
+[data-font='kai'] .zh-article{font-family:"LXGW WenKai Screen","Kaiti SC","STKaiti",var(--serif);letter-spacing:.03em}
+[data-font='wei'] .zh-article{font-family:"ZCOOL XiaoWei",var(--serif);letter-spacing:.04em}
+[data-font='song'] .zh-article{font-family:"KingHwa_OldSong",var(--serif);letter-spacing:.03em}
+html:not([data-font]) .zh-article{font-family:var(--sans)}
+.themes{display:inline-flex;align-items:center}.top-in{position:relative}
+.aa-btn{display:inline-flex!important;align-items:center;gap:6px;height:28px;padding:0 10px!important;border-radius:999px;border:0!important;background:none!important;color:var(--muted)!important;cursor:pointer;font:13px var(--sans);white-space:nowrap;margin-left:6px}
+.aa-btn:hover,.aa-btn[aria-expanded='true']{color:var(--text)!important;background:var(--card)!important}
+.aa-btn .aa{font:700 15px/1 Georgia,var(--serif);letter-spacing:-.02em}.aa-btn .aa small{font-size:11.5px}
+.aa-pop{position:absolute;right:16px;top:calc(100% + 4px);z-index:60;width:330px;max-width:calc(100vw - 24px);max-height:calc(100vh - 110px);overflow-y:auto;overscroll-behavior:contain;background:var(--bg);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.18);padding:14px;font:13px var(--sans);color:var(--text);text-align:left;animation:pop-in .16s ease-out}
+.aa-pop[hidden]{display:none}@keyframes pop-in{from{opacity:0;transform:translateY(-4px)}}
+.aa-pop button{margin:0}
+.pop-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.pop-head span{font-size:11.5px;letter-spacing:.16em;color:var(--muted);font-weight:500}
+.pop-head button{background:none;border:0;color:var(--muted);cursor:pointer;font-size:12px;text-decoration:underline;text-underline-offset:3px;padding:0}
+.pop-head button:hover{color:var(--text)}
+.seg{display:flex;padding:3px;gap:2px;background:var(--card);border-radius:10px}
+.seg button{flex:1;background:none;border:0;color:var(--muted);border-radius:7px;padding:6px 0;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center}
+.seg button:hover{color:var(--text)}
+.seg button[aria-pressed='true']{background:var(--bg);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.12);font-weight:600}
+.seg button:disabled{opacity:.35;cursor:default}
+.seg .sz{display:flex;align-items:center;justify-content:center;flex:.9;color:var(--text);font-variant-numeric:tabular-nums;font-size:13px;font-weight:600}
+.seg svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.swatches button{height:38px;border-radius:9px;border:1px solid rgba(0,0,0,.12);cursor:pointer;font-size:13px;font-family:var(--serif)}
+.swatches button[aria-pressed='true']{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--red);font-weight:700}
+.font-list{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
+.font-list button{background:var(--card);border:1px solid transparent;border-radius:9px;padding:9px 4px;cursor:pointer;color:var(--text);font-size:15px;line-height:1.3;white-space:nowrap}
+.font-list button:first-child{font-family:var(--sans)}
+.font-list button:hover{border-color:var(--line-strong)}
+.font-list button[aria-pressed='true']{border-color:var(--red);background:var(--bg);font-weight:600}
+.pop-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.seg-measure{margin-top:8px}.seg[hidden]{display:none}
+@media(max-width:600px){.aa-btn .lbl{display:none}.aa-pop{right:12px;left:12px;width:auto;max-width:none}}

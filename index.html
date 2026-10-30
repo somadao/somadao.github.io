@@ -1,20 +1,32 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>凡人修仙·落地版 · 道教内丹典籍白话精读</title><meta name="description" content="道教内丹典籍白话精读">
-<script>(function(){try{var t=localStorage.getItem('nd-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<script>(function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
+var t=g('nd-theme'),f=g('nd-font'),z=g('nd-size'),lh=g('nd-lh'),w=g('nd-measure');
+if(t==='light'||t==='sepia'||t==='dark')d.setAttribute('data-theme',t);
+var F={sans:'https://fonts.googleapis.cn/css2?family=Noto+Sans+SC:wght@400;600&display=swap',
+serif:'https://fonts.googleapis.cn/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap',
+kai:'https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaiscreen.css',
+wei:'https://fonts.googleapis.cn/css2?family=ZCOOL+XiaoWei&display=swap',
+song:'https://cdn.jsdelivr.net/npm/@chinese-fonts/jhlst@3.0.0/dist/%E4%BA%AC%E8%8F%AF%E8%80%81%E5%AE%8B%E4%BD%93v2_002/result.css'};
+window.__ndLoadFont=function(k){if(!F[k]||document.getElementById('ndfont-'+k))return;var l=document.createElement('link');l.rel='stylesheet';l.href=F[k];l.id='ndfont-'+k;document.head.appendChild(l)};
+if(!f)f='serif';if(F[f]){d.setAttribute('data-font',f);window.__ndLoadFont(f)}
+if(z&&/^(1[5-9]|2[0-2])$/.test(z))d.style.setProperty('--read-size',z+'px');
+if(lh&&/^(1\.\d+|2(\.\d+)?)$/.test(lh))d.style.setProperty('--read-lh',lh);
+if(w&&/^\d{3}$/.test(w))d.style.setProperty('--measure',w+'px');})();</script>
+
 <link rel="stylesheet" href="assets/style.css"></head><body>
 <header class="top"><div class="top-in">
 <a class="brand" href="index.html">凡人修仙·落地版<small>道教内丹典籍白话精读</small></a>
 <nav class="topnav"><a href="index.html">书架</a><a href="glossary.html">术语表</a><a href="search.html">搜索</a></nav>
 <span class="sp"></span>
-<span class="themes"><button data-t="">自动</button><button data-t="light">明</button><button data-t="sepia">米</button><button data-t="dark">暗</button></span>
+<span class="themes"><button type="button" id="aa-btn" class="aa-btn" aria-expanded="false" aria-haspopup="true" title="阅读设置"><span class="aa">A<small>a</small></span><span class="lbl">阅读设置</span></button></span>
 </div></header>
 <div class="layout single"><main id="main"><section class="hero"><div class="kicker">中 · Français · English</div>
 <h1>凡人修仙·落地版</h1><p class="dek">道教内丹典籍白话精读：把道教内丹典籍翻成看得懂、念得出、做得到的白话。</p>
 <p class="lede">每一章都有文言原文、逐段白话、注家原注、难懂术语的解释和「落地要点」；朗读由本人录制。中文版完成后，再陆续推出法语、英语版。</p>
 <form class="hero-search" action="search.html"><input name="q" type="search" placeholder="搜索原文、白话或术语，如：回光、玄关、凝神入气穴" aria-label="搜索"><button>搜索</button></form></section>
-<section class="shelf"><h2>书架</h2><div class="cards"><a class="card" href="b01/index.html"><small>中文白话已定稿 · 中文朗读已完成</small><b>中国古代气功选注</b><span>邱陵 编注 · 1988 · 10 篇 · 93 章</span><em>开始阅读 →</em></a><a class="card" href="b02/index.html"><small>中文白话已定稿 · 中文朗读已完成</small><b>丹功入门指要</b><span>邱陵 编注 · 1991 · 12 篇 · 29 章</span><em>开始阅读 →</em></a></div></section>
+<section class="shelf"><h2>书架</h2><div class="cards"><a class="card" href="b01/index.html"><small>中文白话已定稿 · 中文朗读已完成</small><b>中国古代气功选注</b><span>邱陵 编注 · 1988 · 10 篇 · 93 章</span><em>开始阅读 →</em></a><a class="card" href="b02/index.html"><small>中文白话已定稿 · 中文朗读已完成</small><b>丹功入门指要</b><span>邱陵 编注 · 1991 · 12 篇 · 29 章</span><em>开始阅读 →</em></a><a class="card" href="b03/index.html"><small>中文白话整理中</small><b>清·黄元吉养生静功心法注释</b><span>邱陵 编注 · 1990 · 10 篇 · 63 章</span><em>开始阅读 →</em></a></div></section>
 <section class="shelf"><h2>工具</h2><div class="cards">
 <a class="card" href="glossary.html"><small>全站共用</small><b>丹道术语对照表</b><span>94 条 · 同一件事的不同叫法归在一起</span><em>查看 →</em></a>
 <a class="card" href="search.html"><small>离线可用</small><b>全文搜索</b><span>白话、原文、术语一起搜</span><em>搜索 →</em></a>
@@ -22,7 +34,7 @@
 </div></section></main></div>
 <footer class="foot"><div class="foot-in">
 <p>凡人修仙·落地版 · 道教内丹典籍白话精读。原文为公有领域古籍；白话译文、术语解析为本站译稿。邱陵先生注释原文经其后人同意引用。</p>
-<p>本站内容仅供文化学习与研究，不构成医疗建议，非商业用途。<a href="about.html">关于、版权说明与安全提示</a> · 更新于 2026-10-28</p>
+<p>本站内容仅供文化学习与研究，不构成医疗建议，非商业用途。<a href="about.html">关于、版权说明与安全提示</a> · 更新于 2026-10-30</p>
 </div></footer>
 <div id="term-pop" class="term-pop" hidden></div>
 <script src="assets/app.js"></script></body></html>
