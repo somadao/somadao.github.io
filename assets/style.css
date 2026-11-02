@@ -132,6 +132,10 @@ mark{background:#ffd60a66;color:inherit;padding:0 1px}
 @media(max-width:600px){.topnav{display:none}.bp-list{columns:1}.pager{grid-template-columns:1fr}.pn.next{text-align:left}.pn.empty{display:none}
  .top-in{gap:6px}.themes button{padding:3px 6px}.hero{padding-top:40px}}
 @media(hover:hover){.term-pop{display:none}}
+/* 插图（按原书重绘的 SVG，线条随主题变色） */
+.fig{margin:.6em auto 1.4em;text-align:center;color:var(--text)}.fig svg{width:min(360px,100%);height:auto;display:block;margin:0 auto}
+.fig figcaption{font:13px/1.6 var(--sans);color:var(--muted);margin-top:6px;letter-spacing:.06em}
+.para-x .para-num{color:var(--red)}
 /* 阅读设置（与 lex.qiaomu.ai 相同的面板） */
 :root{--read-size:18px;--read-lh:2;--measure:680px}
 .zh-article{font-size:var(--read-size);line-height:var(--read-lh)}
