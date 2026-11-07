@@ -176,4 +176,21 @@ html:not([data-font]) .zh-article{font-family:var(--sans)}
 .font-list button[aria-pressed='true']{border-color:var(--red);background:var(--bg);font-weight:600}
 .pop-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
 .seg-measure{margin-top:8px}.seg[hidden]{display:none}
+/* 语言切换与英法页面 */
+.langs{display:inline-flex;gap:2px;margin-right:6px;font:600 12px var(--sans)}
+.langs a,.langs b{padding:3px 7px;text-decoration:none;color:var(--muted);border:1px solid transparent;letter-spacing:.04em}
+.langs b{color:var(--text);border-color:var(--line-strong)}.langs a:hover{color:var(--text);border-color:var(--line)}
+html[lang=en],html[lang=fr]{--serif:"Source Serif 4","Noto Serif",Georgia,"Noto Serif SC","Songti SC",serif;--sans:"Inter","Helvetica Neue",system-ui,"PingFang SC","Noto Sans SC",sans-serif;--read-lh:1.75}
+html[lang=en] .zh-article,html[lang=fr] .zh-article{letter-spacing:0!important;hyphens:auto}
+html[lang=en][data-font=serif] .zh-article,html[lang=fr][data-font=serif] .zh-article{font-family:var(--serif)}
+html[lang=en][data-font=sans] .zh-article,html[lang=fr][data-font=sans] .zh-article{font-family:var(--sans)}
+html[lang=en][data-font=garamond] .zh-article,html[lang=fr][data-font=garamond] .zh-article{font-family:"EB Garamond",var(--serif);font-size:calc(var(--read-size) * 1.06)}
+html[lang=en] .ch-head h1,html[lang=fr] .ch-head h1,html[lang=en] .hero h1,html[lang=fr] .hero h1,html[lang=en] .brand,html[lang=fr] .brand{letter-spacing:.005em}
+html[lang=en] .ch-head .kicker,html[lang=fr] .ch-head .kicker{letter-spacing:.08em}
+html[lang=en] .zh-article h2,html[lang=fr] .zh-article h2{letter-spacing:.01em}
+html[lang=en] blockquote.yuanwen,html[lang=fr] blockquote.yuanwen{letter-spacing:.05em;font-family:"Noto Serif SC","Songti SC",serif}
+.bp-name{display:block;font-size:15px;color:var(--muted);margin:-.1em 0 .5em;font-style:italic}.bp-name em{font-style:normal}
+.g-zh{margin:.2em 0;font:13px var(--sans)}
+@media(max-width:600px){.langs{margin-right:0}.langs a{padding:3px 4px}.langs b{display:none}
+ html[lang=en] .brand,html[lang=fr] .brand{font-size:14px;line-height:1.25;max-width:9.5em}html[lang=en] .brand small,html[lang=fr] .brand small{display:none}}
 @media(max-width:600px){.aa-btn .lbl{display:none}.aa-pop{right:12px;left:12px;width:auto;max-width:none}}

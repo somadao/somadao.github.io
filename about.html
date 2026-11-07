@@ -2,15 +2,19 @@
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>关于、版权说明与安全提示 · 凡人修仙·落地版</title><meta name="description" content="道教内丹典籍白话精读">
 <script>(function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
-var t=g('nd-theme'),f=g('nd-font'),z=g('nd-size'),lh=g('nd-lh'),w=g('nd-measure');
+var L=/^(en|fr)/.test(d.lang),x=L?'-l':'';
+var t=g('nd-theme'),f=g('nd-font'+x),z=g('nd-size'+x),lh=g('nd-lh'+x),w=g('nd-measure'+x);
 if(t==='light'||t==='sepia'||t==='dark')d.setAttribute('data-theme',t);
-var F={sans:'https://fonts.googleapis.cn/css2?family=Noto+Sans+SC:wght@400;600&display=swap',
+var F=L?{sans:'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap',
+serif:'https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap',
+garamond:'https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap'}
+:{sans:'https://fonts.googleapis.cn/css2?family=Noto+Sans+SC:wght@400;600&display=swap',
 serif:'https://fonts.googleapis.cn/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap',
 kai:'https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaiscreen.css',
 wei:'https://fonts.googleapis.cn/css2?family=ZCOOL+XiaoWei&display=swap',
 song:'https://cdn.jsdelivr.net/npm/@chinese-fonts/jhlst@3.0.0/dist/%E4%BA%AC%E8%8F%AF%E8%80%81%E5%AE%8B%E4%BD%93v2_002/result.css'};
 window.__ndLoadFont=function(k){if(!F[k]||document.getElementById('ndfont-'+k))return;var l=document.createElement('link');l.rel='stylesheet';l.href=F[k];l.id='ndfont-'+k;document.head.appendChild(l)};
-if(!f)f='serif';if(F[f]){d.setAttribute('data-font',f);window.__ndLoadFont(f)}
+if(!f||!F[f]&&f!=='sys')f='serif';if(F[f]){d.setAttribute('data-font',f);window.__ndLoadFont(f)}
 if(z&&/^(1[5-9]|2[0-2])$/.test(z))d.style.setProperty('--read-size',z+'px');
 if(lh&&/^(1\.\d+|2(\.\d+)?)$/.test(lh))d.style.setProperty('--read-lh',lh);
 if(w&&/^\d{3}$/.test(w))d.style.setProperty('--measure',w+'px');})();</script>
@@ -19,13 +23,13 @@ if(w&&/^\d{3}$/.test(w))d.style.setProperty('--measure',w+'px');})();</script>
 <header class="top"><div class="top-in">
 <a class="brand" href="index.html">凡人修仙·落地版<small>道教内丹典籍白话精读</small></a>
 <nav class="topnav"><a href="index.html">书架</a><a href="glossary.html">术语表</a><a href="search.html">搜索</a></nav>
-<span class="sp"></span>
+<span class="sp"></span><span class="langs"><b title="中文">中</b><a href="en/about.html" hreflang="en" lang="en" title="English">EN</a><a href="fr/about.html" hreflang="fr" lang="fr" title="Français">FR</a></span>
 <span class="themes"><button type="button" id="aa-btn" class="aa-btn" aria-expanded="false" aria-haspopup="true" title="阅读设置"><span class="aa">A<small>a</small></span><span class="lbl">阅读设置</span></button></span>
 </div></header>
 <div class="layout single"><main id="main"><article class="chapter"><header class="ch-head"><div class="kicker">关于本站</div><h1>关于、版权说明与安全提示</h1></header>
 <div class="zh-article">
 <h2>这是什么</h2>
-<p>「凡人修仙·落地版」把道教内丹典籍逐段翻成白话：每章有文言原文、白话译文、注家原注（附白话）、难懂术语的解释、可以落到日常练习里的要点，以及译者的校勘说明。朗读由本站作者本人录制。中文版完成后，将陆续推出法语、英语版。</p>
+<p>「凡人修仙·落地版」把道教内丹典籍逐段翻成白话：每章有文言原文、白话译文、注家原注（附白话）、难懂术语的解释、可以落到日常练习里的要点，以及译者的校勘说明。朗读由本站作者本人录制。第一本《中国古代气功选注》已有英语、法语译文，其余各本将陆续推出。</p>
 <p>本站是个人的、非商业的文化学习项目。</p>
 
 <h2 id="copyright">版权说明</h2>
@@ -54,9 +58,6 @@ if(w&&/^\d{3}$/.test(w))d.style.setProperty('--measure',w+'px');})();</script>
 <h2>纠错与反馈</h2>
 <p>译稿难免有错。如发现误译、漏译或术语问题，欢迎通过 <a href="https://github.com/somadao/somadao.github.io/issues">反馈页面</a> 指正。</p>
 </div></article></main></div>
-<footer class="foot"><div class="foot-in">
-<p>凡人修仙·落地版 · 道教内丹典籍白话精读。原文为公有领域古籍；白话译文、术语解析为本站译稿。邱陵先生注释原文经其后人同意引用。</p>
-<p>本站内容仅供文化学习与研究，不构成医疗建议，非商业用途。<a href="about.html">关于、版权说明与安全提示</a> · 更新于 2026-11-03</p>
-</div></footer>
+<footer class="foot"><div class="foot-in"><p>凡人修仙·落地版 · 道教内丹典籍白话精读。原文为公有领域古籍；白话译文、术语解析为本站译稿。邱陵先生注释原文经其后人同意引用。</p><p>本站内容仅供文化学习与研究，不构成医疗建议，非商业用途。<a href="about.html">关于、版权说明与安全提示</a> · 更新于 2026-11-07</p></div></footer>
 <div id="term-pop" class="term-pop" hidden></div>
 <script src="assets/app.js"></script></body></html>

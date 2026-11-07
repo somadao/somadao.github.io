@@ -1,22 +1,31 @@
 
 (function(){
-var d=document.documentElement;
+var d=document.documentElement,LG=(d.lang||'zh').slice(0,2),LX=LG==='zh'?'':'-l',Z=LG==='zh';
+var TX={zh:{aa:'阅读设置',reset:'恢复默认',bg:'背景',font:'字体',size:'字号',lh:'行距',measure:'版心宽度',smaller:'缩小字号',bigger:'放大字号',col:'栏',
+ more:'查看完整解释 →',found:function(n){return '找到 '+n+' 处'+(n>80?'，显示前 80 条':'')},none:'没有找到。换个说法试试，或用更短的词。'},
+en:{aa:'Reading settings',reset:'Reset',bg:'Background',font:'Font',size:'Text size',lh:'Line spacing',measure:'Column width',smaller:'Smaller text',bigger:'Larger text',col:'',
+ more:'Glossary entry →',found:function(n){return n+' result'+(n>1?'s':'')+(n>80?', showing the first 80':'')},none:'Nothing found. Try other words, or shorter ones.'},
+fr:{aa:'Réglages de lecture',reset:'Par défaut',bg:'Fond',font:'Police',size:'Taille du texte',lh:'Interligne',measure:'Largeur de colonne',smaller:'Texte plus petit',bigger:'Texte plus grand',col:'',
+ more:'Voir au glossaire →',found:function(n){return n+' résultat'+(n>1?'s':'')+(n>80?', 80 premiers affichés':'')},none:'Aucun résultat. Essayez d’autres mots, ou des mots plus courts.'}}[LG]||null;
+if(!TX)TX={};
 // 阅读设置（背景 / 字体 / 字号 / 行距 / 版心宽度），与 lex.qiaomu.ai 的设置相同
 (function(){var btn=document.getElementById('aa-btn');if(!btn)return;
-var ls={set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+var ls={set:function(k,v){try{localStorage.setItem(k===('nd-theme')?k:k+LX,v)}catch(e){}}};
 var css=function(k){return getComputedStyle(d).getPropertyValue(k).trim()};
-var SIZE={min:15,max:22,def:18},LH=[['1.75','紧凑'],['2','适中'],['2.25','宽松']],MEASURE=[['600','窄'],['680','标准'],['760','宽']];
-var FONTS=[['sys','系统默认','苹方 / 雅黑',''],['sans','思源黑体','Noto Sans SC','"Noto Sans SC"'],['serif','思源宋体','Noto Serif SC','"Noto Serif SC"'],['song','京華老宋','KingHwa OldSong','"KingHwa_OldSong"'],['kai','霞鹜文楷','LXGW WenKai','"LXGW WenKai Screen"'],['wei','站酷小薇','ZCOOL XiaoWei','"ZCOOL XiaoWei"']];
-var THEMES=[['light','浅色','#ffffff','#111111'],['sepia','护眼','#f5eddc','#2f2618'],['dark','深色','#141414','#ebebe8']];
-var st={size:parseInt(css('--read-size'),10)||SIZE.def,lh:css('--read-lh')||'2',measure:String(parseInt(css('--measure'),10)||680),font:d.getAttribute('data-font')||'sys'};
-var pop=document.createElement('div');pop.className='aa-pop';pop.hidden=true;pop.setAttribute('role','dialog');pop.setAttribute('aria-label','阅读设置');
+var SIZE={min:15,max:22,def:18},LH=Z?[['1.75','紧凑'],['2','适中'],['2.25','宽松']]:[['1.55','compact'],['1.75','normal'],['2','loose']],
+MEASURE=Z?[['600','窄'],['680','标准'],['760','宽']]:LG==='fr'?[['600','Étroite'],['680','Normale'],['760','Large']]:[['600','Narrow'],['680','Normal'],['760','Wide']],LHDEF=Z?'2':'1.75';
+var FONTS=!Z?[['sys',LG==='fr'?'Système':'System','',''],['sans','Inter','Inter','"Inter"'],['serif','Source Serif','Source Serif 4','"Source Serif 4"'],['garamond','Garamond','EB Garamond','"EB Garamond"']]:[['sys','系统默认','苹方 / 雅黑',''],['sans','思源黑体','Noto Sans SC','"Noto Sans SC"'],['serif','思源宋体','Noto Serif SC','"Noto Serif SC"'],['song','京華老宋','KingHwa OldSong','"KingHwa_OldSong"'],['kai','霞鹜文楷','LXGW WenKai','"LXGW WenKai Screen"'],['wei','站酷小薇','ZCOOL XiaoWei','"ZCOOL XiaoWei"']];
+var THEMES=[['light',Z?'浅色':LG==='fr'?'Clair':'Light','#ffffff','#111111'],['sepia',Z?'护眼':'Sépia','#f5eddc','#2f2618'],['dark',Z?'深色':LG==='fr'?'Sombre':'Dark','#141414','#ebebe8']];
+if(LG==='en')THEMES[1][1]='Sepia';
+var st={size:parseInt(css('--read-size'),10)||SIZE.def,lh:css('--read-lh')||LHDEF,measure:String(parseInt(css('--measure'),10)||680),font:d.getAttribute('data-font')||'sys'};
+var pop=document.createElement('div');pop.className='aa-pop';pop.hidden=true;pop.setAttribute('role','dialog');pop.setAttribute('aria-label',TX.aa);
 var icons=['M5 8h14M5 12h14M5 16h14','M5 7h14M5 12h14M5 17h14','M5 5.5h14M5 12h14M5 18.5h14'];
-pop.innerHTML='<div class="pop-head"><span>阅读设置</span><button type="button" data-reset>恢复默认</button></div>'
-+'<div class="swatches" data-k="theme" role="group" aria-label="背景">'+THEMES.map(function(x){return '<button type="button" data-v="'+x[0]+'" style="background:'+x[2]+';color:'+x[3]+'">'+x[1]+'</button>'}).join('')+'</div>'
-+'<div class="font-list" data-k="font" role="group" aria-label="字体">'+FONTS.map(function(x){return '<button type="button" data-v="'+x[0]+'" title="'+x[2]+'"'+(x[3]?" style='font-family:"+x[3]+",serif'":'')+'>'+x[1]+'</button>'}).join('')+'</div>'
-+'<div class="pop-pair"><div class="seg" data-k="size" role="group" aria-label="字号"><button type="button" data-v="-1" aria-label="缩小字号">A−</button><span class="sz"></span><button type="button" data-v="1" aria-label="放大字号">A+</button></div>'
-+'<div class="seg" data-k="lh" role="group" aria-label="行距">'+LH.map(function(x,i){return '<button type="button" data-v="'+x[0]+'" title="行距：'+x[1]+'" aria-label="行距'+x[1]+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+icons[i]+'"/></svg></button>'}).join('')+'</div></div>'
-+'<div class="seg seg-measure" data-k="measure" role="group" aria-label="版心宽度">'+MEASURE.map(function(x){return '<button type="button" data-v="'+x[0]+'">'+x[1]+'栏</button>'}).join('')+'</div>';
+pop.innerHTML='<div class="pop-head"><span>'+TX.aa+'</span><button type="button" data-reset>'+TX.reset+'</button></div>'
++'<div class="swatches" data-k="theme" role="group" aria-label="'+TX.bg+'">'+THEMES.map(function(x){return '<button type="button" data-v="'+x[0]+'" style="background:'+x[2]+';color:'+x[3]+'">'+x[1]+'</button>'}).join('')+'</div>'
++'<div class="font-list" data-k="font" role="group" aria-label="'+TX.font+'">'+FONTS.map(function(x){return '<button type="button" data-v="'+x[0]+'" title="'+x[2]+'"'+(x[3]?" style='font-family:"+x[3]+",serif'":'')+'>'+x[1]+'</button>'}).join('')+'</div>'
++'<div class="pop-pair"><div class="seg" data-k="size" role="group" aria-label="'+TX.size+'"><button type="button" data-v="-1" aria-label="'+TX.smaller+'">A−</button><span class="sz"></span><button type="button" data-v="1" aria-label="'+TX.bigger+'">A+</button></div>'
++'<div class="seg" data-k="lh" role="group" aria-label="'+TX.lh+'">'+LH.map(function(x,i){return '<button type="button" data-v="'+x[0]+'" title="'+TX.lh+(Z?'：':': ')+x[1]+'" aria-label="'+TX.lh+' '+x[1]+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+icons[i]+'"/></svg></button>'}).join('')+'</div></div>'
++'<div class="seg seg-measure" data-k="measure" role="group" aria-label="'+TX.measure+'">'+MEASURE.map(function(x){return '<button type="button" data-v="'+x[0]+'">'+x[1]+TX.col+'</button>'}).join('')+'</div>';
 (btn.closest('.top-in')||document.body).appendChild(pop);
 if(window.matchMedia('(max-width: 760px)').matches)pop.querySelector('[data-k="measure"]').hidden=true;
 var $$=function(q){return [].slice.call(pop.querySelectorAll(q))};
@@ -30,7 +39,7 @@ function apply(){d.style.setProperty('--read-size',st.size+'px');d.style.setProp
 sync();
 pop.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
  var anchor=[].slice.call(document.querySelectorAll('.zh-article h2,.zh-article p')).find(function(el){return el.getBoundingClientRect().top>60}),before=anchor?anchor.getBoundingClientRect().top:0;
- if(b.hasAttribute('data-reset')){st.size=SIZE.def;st.lh='2';st.measure='680';st.font='serif'}
+ if(b.hasAttribute('data-reset')){st.size=SIZE.def;st.lh=LHDEF;st.measure='680';st.font='serif'}
  else{var k=b.parentNode.dataset.k,v=b.dataset.v;
   if(k==='theme'){d.setAttribute('data-theme',v);ls.set('nd-theme',v)}
   else if(k==='font')st.font=v;else if(k==='size')st.size=Math.min(SIZE.max,Math.max(SIZE.min,st.size+Number(v)));
@@ -58,24 +67,24 @@ if(pop&&window.matchMedia&&window.matchMedia('(hover: none)').matches){var last=
   if(!a){if(!pop.hidden&&!e.target.closest('.term-pop')){pop.hidden=true;last=null}return}
   if(last===a){pop.hidden=true;last=null;return}
   e.preventDefault();last=a;pop.innerHTML='';var b=document.createElement('b');b.textContent=a.textContent;var p=document.createElement('div');p.textContent=a.getAttribute('data-tip');
-  var l=document.createElement('a');l.href=a.getAttribute('href');l.textContent='查看完整解释 →';pop.appendChild(b);pop.appendChild(p);pop.appendChild(l);pop.hidden=false})}
+  var l=document.createElement('a');l.href=a.getAttribute('href');l.textContent=TX.more;pop.appendChild(b);pop.appendChild(p);pop.appendChild(l);pop.hidden=false})}
 // 术语表筛选
 var gf=document.getElementById('g-filter');
 if(gf){var items=[].slice.call(document.querySelectorAll('.g-item')),none=document.getElementById('g-none');
- gf.oninput=function(){var q=gf.value.trim(),n=0;items.forEach(function(it){var ok=!q||it.getAttribute('data-s').indexOf(q)>=0||it.textContent.indexOf(q)>=0;it.hidden=!ok;if(ok)n++});
+ gf.oninput=function(){var q=gf.value.trim().toLowerCase(),n=0;items.forEach(function(it){var ok=!q||it.getAttribute('data-s').toLowerCase().indexOf(q)>=0||it.textContent.toLowerCase().indexOf(q)>=0;it.hidden=!ok;if(ok)n++});
   document.querySelectorAll('.glossary h2').forEach(function(h){h.hidden=!!q});none.hidden=n>0}}
 // 全文搜索
 var sq=document.getElementById('s-q');
 if(sq&&window.ND_INDEX){var res=document.getElementById('s-res'),stat=document.getElementById('s-stat');
  function escH(t){return t.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
  function run(q){q=q.trim();res.innerHTML='';if(!q){stat.textContent='';return}
-  var ws=q.split(/\s+/).filter(Boolean),out=[];
-  window.ND_INDEX.forEach(function(r){var hay=r.t+' '+r.x,ok=ws.every(function(w){return hay.indexOf(w)>=0});if(!ok)return;
-   var score=0;ws.forEach(function(w){if(r.t.indexOf(w)>=0)score+=50;var i=-1,c=0;while((i=r.x.indexOf(w,i+1))>=0&&c<50)c++;score+=c});out.push([score,r])});
+  var ws=q.toLowerCase().split(/\s+/).filter(Boolean),out=[];
+  window.ND_INDEX.forEach(function(r){var lt=r.t.toLowerCase(),lx=r.lx||(r.lx=r.x.toLowerCase()),hay=lt+' '+lx,ok=ws.every(function(w){return hay.indexOf(w)>=0});if(!ok)return;
+   var score=0;ws.forEach(function(w){if(lt.indexOf(w)>=0)score+=50;var i=-1,c=0;while((i=lx.indexOf(w,i+1))>=0&&c<50)c++;score+=c});out.push([score,r])});
   out.sort(function(a,b){return b[0]-a[0]});
-  stat.textContent=out.length?('找到 '+out.length+' 处'+(out.length>80?'，显示前 80 条':'')):'没有找到。换个说法试试，或用更短的词。';
-  out.slice(0,80).forEach(function(o){var r=o[1],i=r.x.indexOf(ws[0]),st=Math.max(0,i-40),sn=(st>0?'…':'')+r.x.slice(st,st+130)+'…',h=escH(sn);
-   ws.forEach(function(w){h=h.split(escH(w)).join('<mark>'+escH(w)+'</mark>')});
+  stat.textContent=out.length?TX.found(out.length):TX.none;
+  out.slice(0,80).forEach(function(o){var r=o[1],i=r.lx.indexOf(ws[0]),st=Math.max(0,i-(Z?40:80)),sn=(st>0?'…':'')+r.x.slice(st,st+(Z?130:240))+'…',h=escH(sn);
+   ws.forEach(function(w){var re=new RegExp(escH(w).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');h=h.replace(re,function(m){return '<mark>'+m+'</mark>'})});
    var li=document.createElement('li');li.innerHTML='<a href="'+r.u+'">'+escH(r.t)+'</a><small>'+escH(r.p)+'</small><p>'+h+'</p>';res.appendChild(li)})}
  var m=location.search.match(/[?&]q=([^&]*)/);if(m){sq.value=decodeURIComponent(m[1].replace(/\+/g,' '));run(sq.value)}
  document.getElementById('s-form').onsubmit=function(e){e.preventDefault();run(sq.value);try{history.replaceState(null,'','?q='+encodeURIComponent(sq.value))}catch(err){}};}

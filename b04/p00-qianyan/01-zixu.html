@@ -2,15 +2,19 @@
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>自序 · 卷首 · 凡人修仙·落地版</title><meta name="description" content="卷首 · 邱陵自序">
 <script>(function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
-var t=g('nd-theme'),f=g('nd-font'),z=g('nd-size'),lh=g('nd-lh'),w=g('nd-measure');
+var L=/^(en|fr)/.test(d.lang),x=L?'-l':'';
+var t=g('nd-theme'),f=g('nd-font'+x),z=g('nd-size'+x),lh=g('nd-lh'+x),w=g('nd-measure'+x);
 if(t==='light'||t==='sepia'||t==='dark')d.setAttribute('data-theme',t);
-var F={sans:'https://fonts.googleapis.cn/css2?family=Noto+Sans+SC:wght@400;600&display=swap',
+var F=L?{sans:'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap',
+serif:'https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap',
+garamond:'https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap'}
+:{sans:'https://fonts.googleapis.cn/css2?family=Noto+Sans+SC:wght@400;600&display=swap',
 serif:'https://fonts.googleapis.cn/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap',
 kai:'https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaiscreen.css',
 wei:'https://fonts.googleapis.cn/css2?family=ZCOOL+XiaoWei&display=swap',
 song:'https://cdn.jsdelivr.net/npm/@chinese-fonts/jhlst@3.0.0/dist/%E4%BA%AC%E8%8F%AF%E8%80%81%E5%AE%8B%E4%BD%93v2_002/result.css'};
 window.__ndLoadFont=function(k){if(!F[k]||document.getElementById('ndfont-'+k))return;var l=document.createElement('link');l.rel='stylesheet';l.href=F[k];l.id='ndfont-'+k;document.head.appendChild(l)};
-if(!f)f='serif';if(F[f]){d.setAttribute('data-font',f);window.__ndLoadFont(f)}
+if(!f||!F[f]&&f!=='sys')f='serif';if(F[f]){d.setAttribute('data-font',f);window.__ndLoadFont(f)}
 if(z&&/^(1[5-9]|2[0-2])$/.test(z))d.style.setProperty('--read-size',z+'px');
 if(lh&&/^(1\.\d+|2(\.\d+)?)$/.test(lh))d.style.setProperty('--read-lh',lh);
 if(w&&/^\d{3}$/.test(w))d.style.setProperty('--measure',w+'px');})();</script>
@@ -19,7 +23,7 @@ if(w&&/^\d{3}$/.test(w))d.style.setProperty('--measure',w+'px');})();</script>
 <header class="top"><div class="top-in">
 <a class="brand" href="../../index.html">凡人修仙·落地版<small>道教内丹典籍白话精读</small></a>
 <nav class="topnav"><a href="../../index.html">书架</a><a href="../../glossary.html">术语表</a><a href="../../search.html">搜索</a></nav>
-<span class="sp"></span><button id="toc-btn" class="toc-btn" aria-expanded="false" aria-controls="toc">目录</button>
+<span class="sp"></span><span class="langs"><b title="中文">中</b><a href="../../en/index.html" hreflang="en" lang="en" title="English">EN</a><a href="../../fr/index.html" hreflang="fr" lang="fr" title="Français">FR</a></span><button id="toc-btn" class="toc-btn" aria-expanded="false" aria-controls="toc">目录</button>
 <span class="themes"><button id="yw-toggle" aria-pressed="true" title="展开/收起全部原文">原文</button><button type="button" id="aa-btn" class="aa-btn" aria-expanded="false" aria-haspopup="true" title="阅读设置"><span class="aa">A<small>a</small></span><span class="lbl">阅读设置</span></button></span>
 </div></header>
 <div class="layout"><main id="main"><nav class="crumbs"><a href="../../index.html">书架</a><span>/</span><a href="../../b04/index.html">千峰老人丹功法诀注释</a><span>/</span><span>卷首</span></nav><article class="chapter" id="b04-p00-c01"><header class="ch-head"><div class="kicker">卷首</div><h1>自序</h1><p class="dek">卷首 · 邱陵自序</p></header><div class="zh-article"><h2 id="b04-p00-c01-s0">原文</h2><div class="sec "><p>本书原名《性命法诀明指》，为千峰老人赵避尘七十多岁时所著，出版于一九三三年间。赵避尘道号顺一子，北京昌平县人，所遇真伪师不下三十余人，其中知性命双修真诀者只有五六位。光绪二十一年，赵氏在金山寺拜邱长春真人所创立的龙门派第十代祖师了然、了空两禅师为师。龙门派第九代祖师为柳华阳，第八代祖师为伍冲虚。赵避尘为第十一代祖师。此外，赵氏还拜南无派敲跻道人刘名瑞、彭茂昌、刘云普、谭至明等为师。敲跻道人刘名瑞著有《敲跻洞章》、《道源精微歌》等书问世。赵避尘与其胞兄赵魁一于公元一九二〇年奉师命创立千峰衍派，门下甚众。</p>
@@ -28,9 +32,6 @@ if(w&&/^\d{3}$/.test(w))d.style.setProperty('--measure',w+'px');})();</script>
 <p>本书原共有十六步功法口诀，并附千峰老人答门人问及名词解释二篇。千峰老人在书中欲用现代生理、解剖学解释古代道门气功，其志可嘉，惟所言未尽确切，所用科学名词亦多陈旧过时，难以理解，故编者亦将此部分内容删去。</p>
 <p>本书贵在直指详言，尽泄天机。余尝读港台及日本人气功著作，对此书内容评价甚高，多有引用，对赵氏亦有所介绍。虽然台湾有些气功家认为，赵氏修法过于强调&quot;有形有象&quot;，为道门丹法所不宜，亦属见仁见智之论，并未掩本书之光。今重梓此书，俾学者阅之豁然心目，得窥藩篱，如遇明师，快何如之！是为序。</p>
 <p>邱陵　一九八八年三月十日　于香港旅次</p></div></div></article><nav class="pager"><span class="pn prev empty"></span><a class="pn next" href="../../b04/p01-shiliubu/01-anshen-zuqiao.html"><small>下一章</small><span>十六步功法口诀 · 第一步 安神祖窍</span></a></nav></main><nav class="toc" id="toc" aria-label="目录"><div class="toc-sec"><h4>本章</h4><a href="#b04-p00-c01-s0">原文</a></div><div class="toc-book"><h4>全书目录</h4><details class="tp" open><summary>卷首</summary><a href="../../b04/p00-qianyan/01-zixu.html" class="cur" aria-current="page">自序</a></details><details class="tp"><summary>十六步功法口诀</summary><a href="../../b04/p01-shiliubu/01-anshen-zuqiao.html">第一步 安神祖窍</a><a href="../../b04/p01-shiliubu/02-yuding-jinlu.html">第二步 玉鼎金炉</a><a href="../../b04/p01-shiliubu/03-kaitong-bamai.html">第三步 开通八脉</a><a href="../../b04/p01-shiliubu/04-caiqu-waiyao.html">第四步 采取外药</a><a href="../../b04/p01-shiliubu/05-wenwu-huohou.html">第五步 文武火候</a><a href="../../b04/p01-shiliubu/06-caiqu-neiyao.html">第六步 采取内药</a><a href="../../b04/p01-shiliubu/07-xiju-zuqi.html">第七步 翕聚祖炁</a><a href="../../b04/p01-shiliubu/08-zhicang-qixue.html">第八步 蛰藏炁穴</a><a href="../../b04/p01-shiliubu/09-falun-zizhuan.html">第九步 法轮自转</a><a href="../../b04/p01-shiliubu/10-shouqi-fajue.html">第十步 收炁法诀</a><a href="../../b04/p01-shiliubu/11-lingdan-ruding.html">第十一步 灵丹入鼎</a><a href="../../b04/p01-shiliubu/12-wenyang-lingdan.html">第十二步 温养灵丹</a><a href="../../b04/p01-shiliubu/13-dayao-guoguan.html">第十三步 大药过关</a><a href="../../b04/p01-shiliubu/14-yinger-xianxing.html">第十四步 婴儿显形</a><a href="../../b04/p01-shiliubu/15-chushen-neiyuan.html">第十五步 出神内院</a><a href="../../b04/p01-shiliubu/16-xukong-xianxing.html">第十六步 虚空显形</a></details><details class="tp"><summary>附录</summary><a href="../../b04/p02-fulu/01-da-menren-wen.html">附录一 千峰老人答门人问</a><a href="../../b04/p02-fulu/02-mingci-jieshi.html">附录二 名词解释</a><a href="../../b04/p02-fulu/03-shiliubu-gejue.html">附录三 十六步养生功法歌诀</a><a href="../../b04/p02-fulu/04-nvgong.html">附录四 千峰老人女功练法（牛金宝）</a></details></div></nav></div>
-<footer class="foot"><div class="foot-in">
-<p>凡人修仙·落地版 · 道教内丹典籍白话精读。原文为公有领域古籍；白话译文、术语解析为本站译稿。邱陵先生注释原文经其后人同意引用。</p>
-<p>本站内容仅供文化学习与研究，不构成医疗建议，非商业用途。<a href="../../about.html">关于、版权说明与安全提示</a> · 更新于 2026-11-03</p>
-</div></footer>
+<footer class="foot"><div class="foot-in"><p>凡人修仙·落地版 · 道教内丹典籍白话精读。原文为公有领域古籍；白话译文、术语解析为本站译稿。邱陵先生注释原文经其后人同意引用。</p><p>本站内容仅供文化学习与研究，不构成医疗建议，非商业用途。<a href="../../about.html">关于、版权说明与安全提示</a> · 更新于 2026-11-07</p></div></footer>
 <div id="term-pop" class="term-pop" hidden></div>
 <script src="../../assets/app.js"></script></body></html>
