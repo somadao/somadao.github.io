@@ -73,6 +73,33 @@ var gf=document.getElementById('g-filter');
 if(gf){var items=[].slice.call(document.querySelectorAll('.g-item')),none=document.getElementById('g-none');
  gf.oninput=function(){var q=gf.value.trim().toLowerCase(),n=0;items.forEach(function(it){var ok=!q||it.getAttribute('data-s').toLowerCase().indexOf(q)>=0||it.textContent.toLowerCase().indexOf(q)>=0;it.hidden=!ok;if(ok)n++});
   document.querySelectorAll('.glossary h2').forEach(function(h){h.hidden=!!q});none.hidden=n>0}}
+// 朗读连续播放：本章播完自动接着播下一章（同一个播放器换音源，锁屏也能继续）；锁屏 / 耳机的“下一首、上一首”可切章；记住听到哪里
+(function(){var pl=document.querySelector('.player[data-cid]');if(!pl)return;
+var au=pl.querySelector('audio'),box=pl.querySelector('.pl-list'),now=pl.querySelector('.pl-now');if(!au||!box)return;
+var D;try{D=JSON.parse(box.textContent)}catch(e){return}
+var L=D.l,cid=pl.getAttribute('data-cid'),i=-1;L.forEach(function(x,k){if(x.c===cid)i=k});if(i<0)return;
+var W={zh:{auto:'本章播完自动播放下一章',now:'正在播放',open:'打开这一章',end:'本书朗读已全部播完。',resume:function(t){return '上次听到 '+t+'，点播放从这里继续。'},site:'凡人修仙·落地版'},
+ en:{auto:'Play the next chapter automatically',now:'Now playing',open:'Open this chapter',end:'You have reached the end of this book.',resume:function(t){return 'You stopped at '+t+'. Press play to continue from there.'},site:'Immortality, Grounded'},
+ fr:{auto:'Enchaîner automatiquement le chapitre suivant',now:'En cours',open:'Ouvrir ce chapitre',end:'Vous êtes arrivé à la fin de ce livre.',resume:function(t){return 'Vous vous êtes arrêté à '+t+'. Appuyez sur lecture pour reprendre.'},site:'L’immortalité à hauteur d’homme'}}[LG]||{};
+var g=function(k){try{return localStorage.getItem(k)}catch(e){return null}},s=function(k,v){try{if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v)}catch(e){}};
+var KA='nd-autoplay',KP='nd-pos-'+LG,on=function(){return g(KA)!=='0'};
+var lab=document.createElement('label');lab.className='pl-auto';lab.innerHTML='<input type="checkbox"> <span></span>';lab.querySelector('span').textContent=W.auto;
+var cb=lab.querySelector('input');cb.checked=on();cb.onchange=function(){s(KA,cb.checked?'1':'0')};au.parentNode.insertBefore(lab,au.nextSibling);
+function mm(t){t=Math.floor(t);var h=Math.floor(t/3600),m=Math.floor(t%3600/60),x=t%60;return (h?h+':'+(m<10?'0':''):'')+m+':'+(x<10?'0':'')+x}
+function show(msg,link){now.innerHTML='';if(!msg){now.hidden=true;return}var b=document.createElement('b');b.textContent=msg;now.appendChild(b);
+ if(link){now.appendChild(document.createTextNode((LG==='zh'?'':' ')+link.t));var a=document.createElement('a');a.href=link.u;a.textContent=W.open+' →';now.appendChild(a)}now.hidden=false}
+function meta(){if(!('mediaSession' in navigator)||!window.MediaMetadata)return;try{navigator.mediaSession.metadata=new MediaMetadata({title:L[i].t,artist:W.site,album:D.b})}catch(e){}}
+function go(j){if(j<0||j>=L.length)return;i=j;au.src=L[i].s;meta();if(L[i].c===cid)show('');else show(W.now+(LG==='zh'?'：':(LG==='fr'?' :':':')),L[i]);var p=au.play();if(p&&p.catch)p.catch(function(){})}
+au.addEventListener('ended',function(){s(KP,null);if(!on())return;if(i+1<L.length)go(i+1);else show(W.end)});
+au.addEventListener('play',meta);
+if('mediaSession' in navigator){try{navigator.mediaSession.setActionHandler('nexttrack',function(){go(i+1)});
+ navigator.mediaSession.setActionHandler('previoustrack',function(){if(au.currentTime>5)au.currentTime=0;else go(i-1)})}catch(e){}}
+// 记住听到哪里（每章一个位置，只记最近一章）；回到那一章的页面时从那里继续
+var last=0;au.addEventListener('timeupdate',function(){var t=au.currentTime;if(t>10&&Math.abs(t-last)>=5){last=t;s(KP,JSON.stringify({c:L[i].c,t:Math.floor(t)}))}});
+var sv=null;try{sv=JSON.parse(g(KP)||'null')}catch(e){}
+if(sv&&sv.c===cid&&sv.t>10){show(W.resume(mm(sv.t)));var once=function(){au.removeEventListener('play',once);if(L[i].c!==cid)return;var seek=function(){try{au.currentTime=sv.t}catch(e){}};
+ if(au.readyState>=1)seek();else au.addEventListener('loadedmetadata',seek,{once:true});show('')};au.addEventListener('play',once)}
+})();
 // 全文搜索
 var sq=document.getElementById('s-q');
 if(sq&&window.ND_INDEX){var res=document.getElementById('s-res'),stat=document.getElementById('s-stat');

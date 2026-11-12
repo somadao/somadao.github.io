@@ -74,7 +74,10 @@ details.qn-yw blockquote{margin:0 0 10px;padding:0;font-size:16px;line-height:1.
 .pl-langs b,.pl-langs i{font-style:normal;font-weight:600;padding:1px 6px;margin-right:4px;border:1px solid var(--line-strong)}
 .pl-langs b{background:var(--text);color:var(--bg);border-color:var(--text)}.pl-langs i{opacity:.45}
 .pl-state{margin-left:auto;font-weight:400;letter-spacing:.04em}
-.player audio{width:100%;margin-top:10px}.pl-wait{margin:8px 0 0;font:13px/1.7 var(--sans);color:var(--muted)}
+.player audio{width:100%;margin-top:10px}
+.pl-auto{display:flex;align-items:center;gap:6px;margin-top:8px;font:13px/1.6 var(--sans);color:var(--muted);cursor:pointer;width:max-content}
+.pl-auto input{margin:0;accent-color:var(--text)}
+.pl-now{margin:8px 0 0;font:13px/1.7 var(--sans);color:var(--muted)}.pl-now b{color:var(--text);font-weight:600}.pl-now a{margin-left:8px}.pl-wait{margin:8px 0 0;font:13px/1.7 var(--sans);color:var(--muted)}
 .pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:28px 0 48px}
 .pn{display:block;border:1px solid var(--line-strong);padding:12px 14px;text-decoration:none;min-height:64px}
 .pn small{display:block;font:600 11px var(--sans);letter-spacing:.16em;color:var(--muted);margin-bottom:4px}
