@@ -197,6 +197,7 @@ html[lang=en] .tl b,html[lang=fr] .tl b{font:600 22px var(--latin);letter-spacin
 /* 渐显 */
 html.js .rv{opacity:0;transform:translateY(22px);filter:blur(6px);transition:opacity 1.1s var(--ease) var(--d,0s),transform 1.1s var(--ease) var(--d,0s),filter 1.1s var(--ease) var(--d,0s)}
 html.js .rv.in{opacity:1;transform:none;filter:none}
+html.js .rv:not(.in){animation:rv-safe .8s 3s var(--ease) forwards}@keyframes rv-safe{to{opacity:1;transform:none;filter:none}}
 @media(max-width:900px){.h-in{grid-template-columns:1fr}.h-vt{position:absolute;right:0;top:20px}.h-title{font-size:clamp(60px,15vw,96px)}
  .h-copy{padding-top:min(56vw,330px)}.h-feats,.h-tools{grid-template-columns:1fr 1fr}.h-listen{grid-template-columns:1fr}.h-wave{grid-row:auto;height:60px}.h-hint{display:none}}
 @media(max-width:600px){.h-feats,.h-tools{grid-template-columns:1fr}.h-stats{grid-template-columns:1fr 1fr;row-gap:12px}.h-books{grid-template-columns:1fr 1fr;gap:34px 16px}
