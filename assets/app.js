@@ -100,6 +100,24 @@ var sv=null;try{sv=JSON.parse(g(KP)||'null')}catch(e){}
 if(sv&&sv.c===cid&&sv.t>10){show(W.resume(mm(sv.t)));var once=function(){au.removeEventListener('play',once);if(L[i].c!==cid)return;var seek=function(){try{au.currentTime=sv.t}catch(e){}};
  if(au.readyState>=1)seek();else au.addEventListener('loadedmetadata',seek,{once:true});show('')};au.addEventListener('play',once)}
 })();
+// 首页：渐显、远山视差、八卦随滚动旋转、书封随指针倾斜
+(function(){var home=document.querySelector('.home');if(!home)return;
+try{sessionStorage.setItem('nd-seen','1')}catch(e){}
+var RM=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var rv=[].slice.call(document.querySelectorAll('.rv'));
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});rv.forEach(function(el){io.observe(el)})}
+else rv.forEach(function(el){el.classList.add('in')});
+var mt=[].slice.call(home.querySelectorAll('.mtn')),bq=home.querySelector('.h-quote'),px=0,ticking=false;
+function frame(){ticking=false;var y=window.scrollY||0;document.body.classList.toggle('scrolled',y>20);if(RM)return;
+ mt.forEach(function(m){var k=parseFloat(m.getAttribute('data-depth'))||0;m.style.transform='translate('+(px*k*40).toFixed(1)+'px,'+(y*k).toFixed(1)+'px)'});
+ if(bq){var r=bq.getBoundingClientRect(),p=(window.innerHeight-r.top)/(window.innerHeight+r.height);bq.style.setProperty('--rot',(p*120).toFixed(1)+'deg')}}
+function req(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}
+window.addEventListener('scroll',req,{passive:true});frame();
+var hero=home.querySelector('.h-hero');if(hero&&!RM)hero.addEventListener('pointermove',function(e){px=(e.clientX/window.innerWidth-.5);req()});
+if(!RM&&window.matchMedia('(hover: hover)').matches)[].slice.call(home.querySelectorAll('.bk')).forEach(function(b){var c=b.querySelector('.cover');if(!c)return;
+ b.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.setProperty('--ry',(x*16).toFixed(1)+'deg');c.style.setProperty('--rx',(-y*10).toFixed(1)+'deg')});
+ b.addEventListener('pointerleave',function(){c.style.setProperty('--ry','0deg');c.style.setProperty('--rx','0deg')})});
+})();
 // 全文搜索
 var sq=document.getElementById('s-q');
 if(sq&&window.ND_INDEX){var res=document.getElementById('s-res'),stat=document.getElementById('s-stat');
