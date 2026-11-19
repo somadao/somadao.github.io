@@ -337,3 +337,20 @@ html[lang=en] blockquote.yuanwen,html[lang=fr] blockquote.yuanwen{letter-spacing
 @media(max-width:600px){.langs{margin-right:0}.langs a{padding:3px 4px}.langs b{display:none}
  html[lang=en] .brand,html[lang=fr] .brand{font-size:14px;line-height:1.25;max-width:9.5em}html[lang=en] .brand small,html[lang=fr] .brand small{display:none}}
 @media(max-width:600px){.aa-btn .lbl{display:none}.aa-pop{right:12px;left:12px;width:auto;max-width:none}}
+/* 订阅与支持（2026-11-19） */
+.cta{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:40px 0 8px;align-items:start}
+.cta-box{border:1px solid var(--line-strong);background:var(--card);padding:20px 22px}
+.cta-box h3{font:700 18px/1.4 var(--serif);margin:0 0 8px;letter-spacing:.04em}
+.cta-box p{font:14px/1.75 var(--sans);color:var(--soft);margin:0 0 14px}
+.sub-form{display:flex;gap:0}
+.sub-form input{flex:1;min-width:0;font:15px var(--sans);padding:10px 12px;border:1px solid var(--rule);border-right:0;background:var(--bg);color:var(--text);border-radius:0}
+.sub-form button{font:600 14px var(--sans);padding:0 18px;border:1px solid var(--rule);background:var(--text);color:var(--bg);cursor:pointer;letter-spacing:.08em}
+.sub-form button:hover{background:var(--red);border-color:var(--red)}
+.sup-qr{display:flex;gap:16px;flex-wrap:wrap;margin:0 0 6px}
+.sup-qr figure{margin:0;text-align:center}
+.sup-qr img{display:block;width:132px;height:132px;background:#fff;padding:6px;border:1px solid var(--line-strong)}
+.sup-qr figcaption{font:600 12px var(--sans);letter-spacing:.14em;color:var(--muted);margin-top:6px}
+.cta-box .sup-note{font-size:12px;color:var(--muted);margin:0 0 12px}
+.sup-btns .btn{margin:0}
+.h-join .cta{margin-top:28px;max-width:960px}.h-join .cta-box{background:transparent;border-color:var(--rule)}
+@media(max-width:600px){.cta{grid-template-columns:1fr}.sup-qr img{width:120px;height:120px}}
